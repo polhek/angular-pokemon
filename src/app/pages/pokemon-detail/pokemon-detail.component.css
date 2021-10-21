@@ -1,0 +1,24 @@
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details img {
+  align-self: center;
+}
+
+.desc {
+  background-color: #30a7d7;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.desc div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.detail-title {
+  color: white;
+}

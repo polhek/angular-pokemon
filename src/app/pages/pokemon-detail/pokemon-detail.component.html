@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="search-container">
+    <h2>Name: {{ pokemonDetails?.name | titlecase }}</h2>
+  </div>
+  <div class="details">
+    <img [src]="imagePath" alt="pokemon.name" />
+    <div class="desc">
+      <div>
+        <span class="detail-title">Height:</span
+        ><span class="detail-normal">{{ pokemonDetails?.height }}</span>
+      </div>
+      <div>
+        <span class="detail-title">Weight:</span
+        ><span class="detail-normal">{{ pokemonDetails?.weight }}</span>
+      </div>
+      <div>
+        <span class="detail-title">Base Experience:</span
+        ><span class="detail-normal">{{
+          pokemonDetails?.base_experience
+        }}</span>
+      </div>
+    </div>
+  </div>
+</div>

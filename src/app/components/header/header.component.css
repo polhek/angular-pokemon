@@ -1,0 +1,24 @@
+header {
+  background-color: #cc0000;
+  padding: 15px 25px;
+  color: #3b4cca;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #3b4cca;
+  font-size: large;
+}
+
+nav a:hover {
+  color: #26349a;
+  font-weight: bold;
+}

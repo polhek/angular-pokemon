@@ -1,0 +1,5 @@
+<div class="poke-item">
+  <img [src]="imagePath" alt="pokemon.name" />
+  <h3>Name: {{ pokemon?.name | titlecase }}</h3>
+  <a routerLink="/pokemon/{{ pokemon?.name }}">Details</a>
+</div>

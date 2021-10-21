@@ -10,3 +10,19 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
+.container {
+  padding: 25px;
+}
+
+h1 {
+  font-size: x-large;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: black 1px solid;
+  padding-bottom: 10px;
+}
