@@ -1,3 +1,4 @@
+import { ShareSelectedPokemonService } from './../../services/share-selected-pokemon.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Pokemon } from 'src/app/models/Pokemon';
 
@@ -11,7 +12,7 @@ export class PokeItemComponent implements OnInit {
   i?: string;
   imagePath?: string;
 
-  constructor() {}
+  constructor(private shareSelected: ShareSelectedPokemonService) {}
 
   ngOnInit(): void {
     this.getIndex();
@@ -19,11 +20,14 @@ export class PokeItemComponent implements OnInit {
 
   getIndex(): void {
     if (this.pokemon) {
-      console.log(this.pokemon);
-      const url: string = this.pokemon?.url;
+      const url: string = this.pokemon?.url!;
       const spliceUrl = url.split('/');
       this.i = spliceUrl[spliceUrl.length - 2];
       this.imagePath = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.i}.png`;
     }
+  }
+
+  selectPokemon(pokemon: Pokemon) {
+    this.shareSelected.chooseSelectedPokemon(pokemon);
   }
 }

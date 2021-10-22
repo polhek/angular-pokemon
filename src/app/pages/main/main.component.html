@@ -1,9 +1,12 @@
 <div class="container">
   <div class="search-container">
     <h2>Pokédex</h2>
-
-    <input #searchBox class="search" (input)="search(searchBox.value)" />
+    <div>
+      <button *ngIf="prevPage" (click)="goPrevPage()">Prev Page</button>
+      <button (click)="goNextPage()">Next Page</button>
+    </div>
   </div>
+
   <div class="poke-list">
     <app-poke-item
       *ngFor="let pokemon of pokemonList"

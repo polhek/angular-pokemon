@@ -1,8 +1,9 @@
+import { MessageService } from './message.service';
 import { Pokemon } from 'src/app/models/Pokemon';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { PokemonApiResult, PokemonDetails } from './../models/Pokemon';
 
 const httpOptions = {
@@ -16,7 +17,10 @@ export class PokeapiService {
   private apiUrl =
     'https://cors-anywhere.herokuapp.com/https://pokeapi.co/api/v2/';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService
+  ) {}
 
   getPokemons(
     link: string = `${this.apiUrl}/pokemon?limit=10`
@@ -24,7 +28,8 @@ export class PokeapiService {
     return this.http.get<PokemonApiResult>(link, httpOptions).pipe(
       tap((_) => {
         console.log('Successfuly fetched pokemons!');
-      })
+      }),
+      catchError(this.handleError<PokemonApiResult>('getPokemons', {}))
     );
   }
 
@@ -32,7 +37,8 @@ export class PokeapiService {
     return this.http.get<PokemonDetails>(`${this.apiUrl}/pokemon/${name}`).pipe(
       tap((_) => {
         console.log('Successfuly fetched specified pokemon details!');
-      })
+      }),
+      catchError(this.handleError<PokemonDetails>('getPokemons', {}))
     );
   }
 
@@ -42,13 +48,28 @@ export class PokeapiService {
       // if not search term, return empty hero array.
       return of({ name: '', url: '' });
     }
-    console.log('runal');
+
     return this.http
       .get<Pokemon>(`${this.apiUrl}/pokemon/${term}`, httpOptions)
       .pipe(
         tap((_) => {
           console.log('Debounce');
-        })
+        }),
+        catchError(this.handleError<Pokemon>('getPokemons', {}))
       );
+  }
+
+  private log(msg: string) {
+    this.messageService.add(`PokeApiService: ${msg}`);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error);
+
+      this.log(`${operation} failed: ${error.message}`);
+
+      return of(result as T);
+    };
   }
 }

@@ -11,6 +11,7 @@ import { PokemonsComponent } from './pages/pokemons/pokemons.component';
 import { PokeItemComponent } from './components/poke-item/poke-item.component';
 import { PokemonDetailComponent } from './pages/pokemon-detail/pokemon-detail.component';
 import { RevertStringPipe } from './pipes/revert-string.pipe';
+import { MessagesComponent } from './components/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RevertStringPipe } from './pipes/revert-string.pipe';
     PokeItemComponent,
     PokemonDetailComponent,
     RevertStringPipe,
+    MessagesComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

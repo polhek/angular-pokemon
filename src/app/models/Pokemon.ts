@@ -1,13 +1,13 @@
 export interface Pokemon {
-  name: string;
-  url: string;
+  name?: string;
+  url?: string;
 }
 
 export interface PokemonApiResult {
-  count: number;
-  next: string;
+  count?: number;
+  next?: string;
   previous?: string;
-  results: Pokemon[];
+  results?: Pokemon[];
 }
 
 export interface PokemonDetails {
@@ -21,7 +21,7 @@ export interface PokemonDetails {
   is_default?: boolean;
   location_area_encounters?: string;
   moves?: Move[];
-  name: string;
+  name?: string;
   order?: number;
   past_types?: any[];
   species?: Species;

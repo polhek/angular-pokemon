@@ -1,1 +1,20 @@
-<p>pokemons works!</p>
+<div class="container">
+  <div class="search-container">
+    <h2>Search Pokemon by Name:</h2>
+    <input
+      #searchBox
+      class="search"
+      (input)="search(searchBox.value.toLowerCase())"
+    />
+  </div>
+  <h2 *ngIf="selPoke$ | async as selectedPokemon">
+    {{ selectedPokemon | json }}
+  </h2>
+  <ul>
+    <li *ngIf="searchable$ | async; let searchable">
+      {{ searchable.name }}{{ searchable.height }}
+    </li>
+  </ul>
+
+  <app-messages></app-messages>
+</div>
